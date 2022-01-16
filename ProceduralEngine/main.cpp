@@ -6,7 +6,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
-    //Test for Box2D
+    //Test for Box2D, works for release too
     b2Vec2 gravity(0.0f, -10.0f);
     while (window.isOpen())
     {
