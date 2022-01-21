@@ -1,8 +1,13 @@
 #include <SFML/Graphics.hpp>
 #include <Box2D/Box2D.h>
+#include <iostream>
+#include "Random.h"
+#include <string>
 
 int main()
 {
+    Random::seedGenerator();
+
     sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
     sf::CircleShape shape(100.f);
     shape.setFillColor(sf::Color::Green);
@@ -21,6 +26,7 @@ int main()
         window.draw(shape);
         window.display();
     }
+
 
     return 0;
 }
