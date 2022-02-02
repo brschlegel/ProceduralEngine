@@ -8,12 +8,15 @@ using namespace std;
 class Random
 {
 public:
-	static minstd_rand rng;
+
 	static void seedGenerator(int seed = 0);
 	static int generateRandomInt(int min, int max);
 	static int generateRandomInt(int max);
 	static float generateRandomReal(int min, int max);
 	static float generateRandomValue();
 	static float generateNormalValue(float mean, float stdDev);
+	static minstd_rand getEngine();
+private:
+	static minstd_rand rng;
 };
 

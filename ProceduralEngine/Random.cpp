@@ -75,4 +75,9 @@ float Random::generateNormalValue(float mean, float stdDev)
 	return dist(Random::rng);
 }
 
+minstd_rand Random::getEngine()
+{
+	return Random::rng;
+}
+
 
