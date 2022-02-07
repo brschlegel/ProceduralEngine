@@ -1,6 +1,6 @@
 #pragma once
-#include <string>
-#include "Transform.h"
+#include <string>;
+#include "Transform.h";
 
 /// <summary>
 /// An interface for all objects that will have code attached to them.
@@ -16,6 +16,7 @@ public:
 	std::string setName(std::string _name) { name = _name; }
 
 	Transform getTransform() { return transform; }
+	void setTransform(Transform _transform) { transform = _transform; }
 
 private:
 	std::string name;

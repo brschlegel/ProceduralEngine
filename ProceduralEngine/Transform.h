@@ -1,5 +1,5 @@
 #pragma once
-#include <Box2D/Box2D.h>
+#include <Box2D/Box2D.h>;
 
 /// <summary>
 /// An extension of b2Transform. The b2Transform class has limited functionality, so creating
@@ -9,15 +9,38 @@
 class Transform : public b2Transform
 {
 public:
-	// Getters and Setters for position, rotation, and scale
+	/// <summary>
+	/// Get the position of the transform.
+	/// </summary>
 	b2Vec2 getPosition();
+
+	/// <summary>
+	/// Set the position of the transform.
+	/// </summary>
 	void setPosition(b2Vec2 _position);
+	void setPosition(float32 x, float32 y);
 
+	/// <summary>
+	/// Get the rotation of the transform.
+	/// </summary>
 	b2Rot getRotation();
-	void setRotation(b2Rot _rotation);
 
+	/// <summary>
+	/// Set the rotation of the transform.
+	/// </summary>
+	void setRotation(b2Rot _rotation);
+	void setRotation(float32 angle);
+
+	/// <summary>
+	/// Get the scale of the transform.
+	/// </summary>
 	b2Vec2 getScale();
+
+	/// <summary>
+	/// Set the scale of the transform.
+	/// </summary>
 	void setScale(b2Vec2 _scale);
+	void setScale(float32 x, float32 y);
 
 private:
 	b2Vec2 position;
