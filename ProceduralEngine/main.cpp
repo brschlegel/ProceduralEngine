@@ -4,6 +4,7 @@
 #include "Random.h"
 #include <string>
 #include "PerlinNoise.h"
+#include "GameObject.h"
 
 int main()
 {

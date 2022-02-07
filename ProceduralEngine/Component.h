@@ -3,5 +3,6 @@
 
 class Component : IComponent
 {
+	void IComponent::PlaceHolder();
 };
 

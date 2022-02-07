@@ -1,5 +1,5 @@
 #pragma once
-#include <Box2D/Box2D.h>;
+#include <Box2D/Box2D.h>
 
 /// <summary>
 /// An extension of b2Transform. The b2Transform class has limited functionality, so creating

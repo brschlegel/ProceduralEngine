@@ -1,6 +1,6 @@
 #pragma once
-#include <string>;
-#include "Transform.h";
+#include <string>
+#include "Transform.h"
 
 /// <summary>
 /// An interface for all objects that will have code attached to them.
