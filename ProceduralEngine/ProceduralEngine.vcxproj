@@ -149,12 +149,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PerlinNoise.cpp" />
     <ClCompile Include="PMath.cpp" />
     <ClCompile Include="Random.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="IComponent.h" />
+    <ClInclude Include="IScriptable.h" />
     <ClInclude Include="PerlinNoise.h" />
     <ClInclude Include="PMath.h" />
     <ClInclude Include="Random.h" />

@@ -1,4 +1,5 @@
 #pragma once
+
 class IComponent {
 	// TODO: Add IComponent code
 public:
