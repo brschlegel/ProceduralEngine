@@ -13,6 +13,8 @@ int main()
 {
     Random::seedGenerator();
 
+    Debug::drawDebug = true;
+    Debug::drawGrid = true;
 
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "SFML works!");
     DrawManager::windowWidth = windowWidth;
@@ -24,17 +26,15 @@ int main()
     while (window.isOpen())
     {
 
-        window.clear();
+        window.clear(sf::Color(255,255,255));
         sf::Event event;
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-  
         
         drawManager.DrawDebug(&window);
-
         window.display();
     }
 
