@@ -47,7 +47,7 @@ int Random::generateRandomInt(int max)
 /// <param name="min">Minimum</param>
 /// <param name="max">Maximum</param>
 /// <returns></returns>
-float Random::generateRandomReal(int min, int max)
+float Random::generateRandomReal(float min, float max)
 {
 	uniform_real_distribution<float> dist(min, max);
 	return dist(Random::rng);
@@ -57,7 +57,7 @@ float Random::generateRandomReal(int min, int max)
 /// Generates random real number between 0 and 1
 /// </summary>
 /// <returns></returns>
-float Random::generateRandomValue()
+float Random::generateRandom01()
 {
 	uniform_real_distribution<float> dist(0, 1);
 	return dist(Random::rng);
