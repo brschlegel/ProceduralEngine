@@ -2,22 +2,20 @@
 #include <iostream>
 
 GameObject::GameObject() {
+	setName("GameObject");
 	components = std::vector<Component>();
 }
 
-template<class type> type GameObject::addComponent(type component)
-{
-	components.push_back(component);
-	return component;
-}
+std::string GameObject::getName() { return name; }
 
-template<class type> type GameObject::getComponent()
+void GameObject::setName(std::string _name) { name = _name; }
+
+Transform* GameObject::getTransform() { return &transform; }
+
+void GameObject::setTransform(Transform _transform) { transform = _transform; }
+
+Component GameObject::addComponent(Component _component)
 {
-	components.push_back(Component());
-	for (int i = 0; i < components.size(); i++) {
-		std::cout << i << std::endl;
-		if (typeid(components[i]) == typeid(type)) {
-			return components[i];
-		}
-	}
+	components.push_back(_component);
+	return _component;
 }

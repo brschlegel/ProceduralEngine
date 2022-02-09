@@ -1,24 +1,16 @@
 #pragma once
-#include <string>
-#include "Transform.h"
 
 /// <summary>
-/// An interface for all objects that will have code attached to them.
+/// An interface for all classes that will have code attached to them.
 /// The classes that implement this interface will be updated every frame via the main update loop.
 /// </summary>
-class IScriptable {
-public:
-	virtual void start() = 0;
-	virtual void update() = 0;
-	virtual void fixedUpdate() = 0;
-	
-	std::string getName() { return name; }
-	std::string setName(std::string _name) { name = _name; }
+__interface IScriptable {
+	// Called when the GameObject this is attached to is first instantiated.
+	void start();
 
-	Transform getTransform() { return transform; }
-	void setTransform(Transform _transform) { transform = _transform; }
+	// Called every frame update.
+	void update();
 
-private:
-	std::string name;
-	Transform transform;
+	// Called on a fixed update timer.
+	void fixedUpdate();
 };
