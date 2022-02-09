@@ -5,12 +5,11 @@ class GameObject; // Forward declaring GameObject for use within the Component c
 class Component
 {
 public:
-	Component();
+	Component(GameObject* _gameObject);
 
-	// Getters for the name and attached GameObject and a setter for the name
-	std::string getName();
-	void setName(std::string _name);
+	~Component();
 
+	// Getter for the GameObject this Component is attached to
 	GameObject* getGameObject();
 
 protected:

@@ -1,5 +1,11 @@
 #include "Transform.h"
 
+Transform::Transform() {
+	position = b2Vec2(1, 1);
+	rotation = b2Rot(0);
+	scale = b2Vec2(1, 1);
+}
+
 b2Vec2 Transform::getPosition() { return position; }
 
 void Transform::setPosition(b2Vec2 _position) { position = _position; }

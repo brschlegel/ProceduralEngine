@@ -2,7 +2,9 @@
 #include <iostream>
 
 GameObject::GameObject() {
-	setName("GameObject");
+	name = "GameObject";
+	tag = "None";
+	transform = Transform();
 	components = std::vector<Component>();
 }
 
@@ -10,7 +12,11 @@ std::string GameObject::getName() { return name; }
 
 void GameObject::setName(std::string _name) { name = _name; }
 
-Transform* GameObject::getTransform() { return &transform; }
+std::string GameObject::getTag() { return tag; }
+
+void GameObject::setTag(std::string _tag) { tag = _tag; }
+
+Transform GameObject::getTransform() { return transform; }
 
 void GameObject::setTransform(Transform _transform) { transform = _transform; }
 

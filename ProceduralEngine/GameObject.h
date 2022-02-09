@@ -12,7 +12,10 @@ public:
 	std::string getName();
 	void setName(std::string _name);
 
-	Transform* getTransform();
+	std::string getTag();
+	void setTag(std::string _tag);
+
+	Transform getTransform();
 	void setTransform(Transform _transform);
 
 	// Add a component to the GameObject. Returns the component being added.
@@ -31,6 +34,7 @@ public:
 
 private:
 	std::string name;
+	std::string tag;
 	Transform transform;
 	std::vector<Component> components;
 };

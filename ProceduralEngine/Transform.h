@@ -9,6 +9,8 @@
 class Transform : public b2Transform
 {
 public:
+	Transform();
+
 	/// <summary>
 	/// Get the position of the transform.
 	/// </summary>

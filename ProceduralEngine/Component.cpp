@@ -1,7 +1,12 @@
 #include "Component.h"
 
-Component::Component() {
-	setName("Component");
+Component::Component(GameObject* _gameObject) {
+	name = "Component";
+	gameObject = _gameObject;
+}
+
+Component::~Component() {
+	delete gameObject;
 }
 
 std::string Component::getName() { return name; }
