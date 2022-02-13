@@ -9,7 +9,15 @@
 class Transform : public b2Transform
 {
 public:
+	// -------------------------------
+	//			CONSTRUCTORS
+	// -------------------------------
+
 	Transform();
+
+	// -------------------------------------
+	//			TRANSFORM METHODS
+	// -------------------------------------
 
 	/// <summary>
 	/// Get the position of the transform.

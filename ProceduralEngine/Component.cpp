@@ -1,16 +1,21 @@
 #include "Component.h"
+#include <iostream>
 
 Component::Component(GameObject* _gameObject) {
-	name = "Component";
 	gameObject = _gameObject;
 }
 
-Component::~Component() {
-	delete gameObject;
+Component::Component(const Component& _other)
+{
 }
 
-std::string Component::getName() { return name; }
+Component::~Component() {
+	gameObject = nullptr;
+}
 
-void Component::setName(std::string _name) { name = _name; }
+Component& Component::operator=(const Component& _other)
+{
+	return *this;
+}
 
 GameObject* Component::getGameObject() { return gameObject; }
