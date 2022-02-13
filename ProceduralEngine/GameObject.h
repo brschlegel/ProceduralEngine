@@ -4,6 +4,7 @@
 #include "Transform.h"
 #include "IScriptable.h"
 
+class Scene;
 class GameObject : public IScriptable
 {
 public:
@@ -12,7 +13,7 @@ public:
 	//			CONSTRUCTORS
 	// -------------------------------
 
-	GameObject();
+	GameObject(Scene* _scene, std::string _name = "GameObject");
 
 	// ----------------------------
 	//			RULE OF 3
@@ -28,27 +29,27 @@ public:
 	//			GAMEOBJECT METHODS
 	// -------------------------------------
 
-	// Getters and Setters for the name, tag, and transform of the GameObject
 	std::string getName();
 	void setName(std::string _name);
 
 	std::string getTag();
 	void setTag(std::string _tag);
 
-	Transform* getTransform();
-	void setTransform(Transform* _transform);
+	Transform getTransform();
+	void setTransform(Transform _transform);
+	void setTransform(b2Vec2 _position, b2Rot _rotation, b2Vec2 _scale);
+	void setTransform(float32 positionX, float32 positionY, float32 angle, float32 scaleX, float32 scaleY);
+
+	Scene* getScene();
 
 	// Add a component to the GameObject. Returns the component being added.
 	Component* addComponent(Component* _component);
-
-	// CODE STUB TO BE IMPLEMENTED AFTER SCENES ARE CREATED
-	// Scene getScene() { return scene; }
 	
 	// Gets a component of the requested type if it exists. Returns 'nullptr' if a component is not found.
 	template <class Type> Component* getComponent() {
-		for (int i = 0; i < components.size(); i++) {
-			if (typeid(Type) == typeid(components[i])) {
-				return components[i];
+		for (Component* component : components) {
+			if (typeid(Type) == typeid(component)) {
+				return component;
 			}
 		}
 
@@ -68,8 +69,8 @@ public:
 private:
 	std::string name;
 	std::string tag;
-	Transform* transform;
+	Transform transform;
 	std::vector<Component*> components;
 	bool enabled;
-	// Reference to the scene this object is in
+	Scene* scene;
 };

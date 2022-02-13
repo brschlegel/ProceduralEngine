@@ -3,19 +3,24 @@
 #include "Random.h"
 #include <string>
 #include "PerlinNoise.h"
-#include "GameObject.h"
+#include "Scene.h"
 
 int windowWidth = 960;
 int windowHeight = 540;
 
 int main()
 {
-    GameObject go = GameObject();
+    Scene scene = Scene();
 
-    go.addComponent(new Component(&go));
-    go.addComponent(new Component(&go));
-    go.addComponent(new Component(&go));
-    go.addComponent(new Component(&go));
+    scene.addGameObject(new GameObject(&scene));
+    scene.addGameObject(new GameObject(&scene, "Bob"));
+    scene.addGameObject(new GameObject(&scene));
+
+    GameObject* go = scene.getGameObjectByName("Bob");
+
+    Debug::print(go->getTransform().toString());
+    go->setTransform(10, 15, 3.14, 1, 1);
+    Debug::print(go->getTransform().toString());
 
     Random::seedGenerator();
 

@@ -1,6 +1,11 @@
 #include "Component.h"
 #include <iostream>
 
+Component::Component() 
+{
+	gameObject = nullptr;
+}
+
 Component::Component(GameObject* _gameObject) {
 	gameObject = _gameObject;
 }

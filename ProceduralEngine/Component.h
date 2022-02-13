@@ -9,6 +9,7 @@ public:
 	//			CONSTRUCTORS
 	// -------------------------------
 
+	Component();
 	Component(GameObject* _gameObject);
 
 	// ----------------------------
@@ -25,8 +26,10 @@ public:
 	//			COMPONENT METHODS
 	// -------------------------------------
 
-	// Getter for the GameObject this Component is attached to
+	// The GameObject this Component is attached to
 	GameObject* getGameObject();
+
+	virtual std::string toString() = 0;
 
 protected:
 	GameObject* gameObject;

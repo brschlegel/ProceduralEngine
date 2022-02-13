@@ -1,23 +1,35 @@
 #include "Scene.h"
 
-Scene::Scene(std::string _name)
-{
-    name = _name;
-    gameObjects = std::vector<GameObject*>();
+Scene::Scene(std::string _name) {
+	name = _name;
+	gameObjects = std::vector<GameObject*>();
 }
 
-Scene::~Scene()
+std::string Scene::getName() { return name; }
+void Scene::setName(std::string _name) { name = _name; }
+
+GameObject* Scene::addGameObject(GameObject* _gameObject)
 {
-    for (GameObject* gameObject : gameObjects) {
-        delete gameObject;
-    }
+	gameObjects.push_back(_gameObject);
+	return _gameObject;
 }
 
-Scene::Scene(const Scene& _other)
-{
+GameObject* Scene::getGameObjectByName(std::string _name) {
+	for (GameObject* gameObject : gameObjects) {
+		if (gameObject->getName() == _name) {
+			return gameObject;
+		}
+	}
+
+	return nullptr;
 }
 
-Scene& Scene::operator=(const Scene& _other)
-{
-    return *this;
+GameObject* Scene::getGameObjectByTag(std::string _tag) {
+	for (GameObject* gameObject : gameObjects) {
+		if (gameObject->getTag() == _tag) {
+			return gameObject;
+		}
+	}
+
+	return nullptr;
 }

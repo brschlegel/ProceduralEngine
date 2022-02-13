@@ -1,32 +1,22 @@
 #pragma once
-#include "GameObject.h"
 #include <vector>
 #include <string>
+#include "GameObject.h"
 
 class Scene
 {
 public:
-	// -------------------------------
-	//			CONSTRUCTORS
-	// -------------------------------
+	Scene(std::string _name = "Scene");
 
-	Scene(std::string _name);
+	std::string getName();
+	void setName(std::string _name);
 
-	// ----------------------------
-	//			RULE OF 3
-	// ----------------------------
+	// Add a component to the GameObject. Returns the component being added.
+	GameObject* addGameObject(GameObject* _gameObject);
 
-	~Scene();
-
-	Scene(const Scene& _other);
-
-	Scene& operator = (const Scene& _other);
-
-	// -------------------------------------
-	//			SCENE METHODS
-	// -------------------------------------
-
-
+	// Gets a GameObject with the given name if it exists. Returns 'nullptr' if a GameObject is not found.
+	GameObject* getGameObjectByName(std::string _name);
+	GameObject* getGameObjectByTag(std::string _tag);
 
 private:
 	std::vector<GameObject*> gameObjects;
