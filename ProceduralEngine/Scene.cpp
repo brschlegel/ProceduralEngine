@@ -25,6 +25,16 @@ GameObject* Scene::getGameObjectByName(std::string _name) {
 	return nullptr;
 }
 
+GameObject* Scene::getGameObjectByTag(std::string _tag) {
+	for (GameObject* gameObject : gameObjects) {
+		if (gameObject->getTag() == _tag) {
+			return gameObject;
+		}
+	}
+
+	return nullptr;
+}
+
 Scene::~Scene()
 {
 	for (int i = 0; i < gameObjects.size(); i++) {
@@ -72,14 +82,4 @@ Scene& Scene::operator=(const Scene& _other)
 	}
 
 	return *this;
-}
-
-GameObject* Scene::getGameObjectByTag(std::string _tag) {
-	for (GameObject* gameObject : gameObjects) {
-		if (gameObject->getTag() == _tag) {
-			return gameObject;
-		}
-	}
-
-	return nullptr;
 }
