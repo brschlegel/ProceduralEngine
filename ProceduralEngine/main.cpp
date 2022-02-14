@@ -12,15 +12,24 @@ int main()
 {
     Scene scene = Scene();
 
-    scene.addGameObject(new GameObject(&scene));
-    scene.addGameObject(new GameObject(&scene, "Bob"));
-    scene.addGameObject(new GameObject(&scene));
-
+    scene.addGameObject(new GameObject());
+    scene.addGameObject(new GameObject("Bob"));
     GameObject* go = scene.getGameObjectByName("Bob");
 
-    Debug::print(go->getTransform().toString());
+    scene.addGameObject(new GameObject("Jim", go));
+
+    Debug::print(go->getTransform()->toString());
     go->setTransform(10, 15, 3.14, 1, 1);
-    Debug::print(go->getTransform().toString());
+    Debug::print(go->getTransform()->toString());
+
+    GameObject* child = go->getChildByName("Jim");
+
+    Debug::print(go->toString());
+
+    Debug::print(go->getChild(0)->toString());
+    Debug::print(child->toString());
+
+    Scene scene2 = Scene(scene);
 
     Random::seedGenerator();
 

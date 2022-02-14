@@ -4,7 +4,6 @@
 #include "Transform.h"
 #include "IScriptable.h"
 
-class Scene;
 class GameObject : public IScriptable
 {
 public:
@@ -13,7 +12,7 @@ public:
 	//			CONSTRUCTORS
 	// -------------------------------
 
-	GameObject(Scene* _scene, std::string _name = "GameObject");
+	GameObject(std::string _name = "GameObject", GameObject* parent = nullptr);
 
 	// ----------------------------
 	//			RULE OF 3
@@ -29,18 +28,26 @@ public:
 	//			GAMEOBJECT METHODS
 	// -------------------------------------
 
+	std::string toString();
+
 	std::string getName();
 	void setName(std::string _name);
 
 	std::string getTag();
 	void setTag(std::string _tag);
 
-	Transform getTransform();
-	void setTransform(Transform _transform);
+	Transform* getTransform();
+	void setTransform(Transform* _transform);
 	void setTransform(b2Vec2 _position, b2Rot _rotation, b2Vec2 _scale);
 	void setTransform(float32 positionX, float32 positionY, float32 angle, float32 scaleX, float32 scaleY);
 
-	Scene* getScene();
+	GameObject* getParent();
+
+	unsigned int getChildCount();
+
+	GameObject* getChild(unsigned int index);
+	GameObject* getChildByName(std::string _name);
+	GameObject* getChildByTag(std::string _tag);
 
 	// Add a component to the GameObject. Returns the component being added.
 	Component* addComponent(Component* _component);
@@ -69,8 +76,9 @@ public:
 private:
 	std::string name;
 	std::string tag;
-	Transform transform;
-	std::vector<Component*> components;
 	bool enabled;
-	Scene* scene;
+	Transform* transform;
+	GameObject* parent;
+	std::vector<GameObject*> children;
+	std::vector<Component*> components;
 };

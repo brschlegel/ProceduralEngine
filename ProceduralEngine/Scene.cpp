@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include <iostream>
 
 Scene::Scene(std::string _name) {
 	name = _name;
@@ -22,6 +23,55 @@ GameObject* Scene::getGameObjectByName(std::string _name) {
 	}
 
 	return nullptr;
+}
+
+Scene::~Scene()
+{
+	for (int i = 0; i < gameObjects.size(); i++) {
+		// Remove any children of GameObjects in the scene from the list
+		// WITHOUT deleting them. The parent GameObjects are responsible
+		// for deleting children.
+		if (gameObjects[i]->getChildCount() > 0) {
+			for (int j = 1; j <= gameObjects[i]->getChildCount(); j++) {
+				gameObjects[i + j] = nullptr;
+				gameObjects.erase(gameObjects.begin() + i + j);
+			}
+		}
+
+		// After any children of the current GameObject are removed, delete the parent.
+		// This will delete the parent and all of its children.
+		delete gameObjects[i];
+		gameObjects[i] = nullptr;
+	}
+}
+
+Scene::Scene(const Scene& _other)
+{
+	gameObjects = std::vector<GameObject*>();
+	
+	for (GameObject* gameObject : _other.gameObjects) {
+		gameObjects.push_back(new GameObject(*gameObject));
+	}
+
+	name = _other.name;
+}
+
+Scene& Scene::operator=(const Scene& _other)
+{
+	if (this != &_other) {
+
+		for (GameObject* gameObject : gameObjects) {
+			delete gameObject;
+		}
+
+		for (GameObject* gameObject : _other.gameObjects) {
+			gameObjects.push_back(new GameObject(*gameObject));
+		}
+
+		name = _other.name;
+	}
+
+	return *this;
 }
 
 GameObject* Scene::getGameObjectByTag(std::string _tag) {

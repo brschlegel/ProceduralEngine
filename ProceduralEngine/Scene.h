@@ -6,7 +6,25 @@
 class Scene
 {
 public:
+	// -------------------------------
+	//			CONSTRUCTORS
+	// -------------------------------
+
 	Scene(std::string _name = "Scene");
+
+	// ----------------------------
+	//			RULE OF 3
+	// ----------------------------
+
+	~Scene();
+
+	Scene(const Scene& _other);
+
+	Scene& operator = (const Scene& _other);
+
+	// ---------------------------------
+	//			SCENE METHODS
+	// ---------------------------------
 
 	std::string getName();
 	void setName(std::string _name);

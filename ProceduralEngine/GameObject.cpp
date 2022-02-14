@@ -1,40 +1,100 @@
 #include "GameObject.h"
 #include <iostream>
 
-GameObject::GameObject(Scene* _scene, std::string _name) {
+GameObject::GameObject(std::string _name, GameObject* _parent) {
 	name = _name;
 	tag = "None";
 	enabled = true;
-	transform = Transform(this);
-	scene = _scene;
+	transform = new Transform(this);
+	parent = _parent;
+	children = std::vector<GameObject*>();
 	components = std::vector<Component*>();
+
+	components.push_back(transform);
+
+	if (parent != nullptr) {
+		parent->children.push_back(this);
+	}
 }
 
 GameObject::~GameObject()
 {
+	parent = nullptr;
+
 	for (Component* component : components) {
 		delete component;
 		component = nullptr;
+	}
+
+	for (GameObject* child : children) {
+		delete child;
+		child = nullptr;
 	}
 }
 
 GameObject::GameObject(const GameObject& _other)
 {
+	name = _other.name;
+	tag = _other.tag;
+	enabled = _other.enabled;
+	parent = _other.parent;
+	transform = new Transform(*_other.transform);
+	children = std::vector<GameObject*>();
+	components = std::vector<Component*>();
+
+	for (Component* component : _other.components) {
+		// This line will be used to check then push a type
+		// 		if (static_cast<Transform*>(component) != nullptr) {
+		//			components.push_back(new Transform(*static_cast<Transform*>(component)));
+		//		}
+		if (static_cast<Transform*>(component) != nullptr) {
+			components.push_back(transform);
+		}
+	}
+
+	for (GameObject* child : _other.children) {
+		children.push_back(new GameObject(*child));
+	}
 }
 
 GameObject& GameObject::operator=(const GameObject& _other)
 {
-	if (this == &_other)
-		return *this;
+	if (this != &_other) {
+		if (parent != nullptr) { delete parent; }
 
-	for (Component* component : components) {
-		delete component;
+		for (Component* component : components) {
+			delete component;
+		}
+
+		for (GameObject* child : children) {
+			delete child;
+		}
+
+		name = _other.name;
+		tag = _other.tag;
+		enabled = _other.enabled;
+		parent = _other.parent;
+		transform = new Transform(*_other.transform);
+
+		for (Component* component : _other.components) {
+			// This block will be used to check then push a new component
+			// 		if (static_cast<Type*>(component) != nullptr) {
+			//			components.push_back(new Type(*static_cast<Type*>(component)));
+			//		}
+			if (static_cast<Transform*>(component) != nullptr) {
+				components.push_back(transform);
+			}
+		}
+
+		for (GameObject* child : _other.children) {
+			children.push_back(new GameObject(*child));
+		}
 	}
-
-	components = _other.components;
 
 	return *this;
 }
+
+std::string GameObject::toString() { return "Name: " + name + "\n"; }
 
 std::string GameObject::getName() { return name; }
 
@@ -44,25 +104,54 @@ std::string GameObject::getTag() { return tag; }
 
 void GameObject::setTag(std::string _tag) { tag = _tag; }
 
-Transform GameObject::getTransform() { return transform; }
+Transform* GameObject::getTransform() { return transform; }
 
-void GameObject::setTransform(Transform _transform) { transform = _transform; }
+void GameObject::setTransform(Transform* _transform) { transform = _transform; }
 
 void GameObject::setTransform(b2Vec2 _position, b2Rot _rotation, b2Vec2 _scale)
 {
-	transform.setPosition(_position);
-	transform.setRotation(_rotation);
-	transform.setScale(_scale);
+	transform->setPosition(_position);
+	transform->setRotation(_rotation);
+	transform->setScale(_scale);
 }
 
 void GameObject::setTransform(float32 positionX, float32 positionY, float32 angle, float32 scaleX, float32 scaleY)
 {
-	transform.setPosition(positionX, positionY);
-	transform.setRotation(angle);
-	transform.setScale(scaleX, scaleY);
+	transform->setPosition(positionX, positionY);
+	transform->setRotation(angle);
+	transform->setScale(scaleX, scaleY);
 }
 
-Scene* GameObject::getScene() { return scene; }
+GameObject* GameObject::getParent()
+{
+	return parent;
+}
+
+unsigned int GameObject::getChildCount() { return children.size(); }
+
+GameObject* GameObject::getChild(unsigned int index) { return index < children.size() ? children[index] : nullptr; }
+
+GameObject* GameObject::getChildByName(std::string _name)
+{
+	for (GameObject* child : children) {
+		if (child->name == _name) {
+			return child;
+		}
+	}
+
+	return nullptr;
+}
+
+GameObject* GameObject::getChildByTag(std::string _tag)
+{
+	for (GameObject* child : children) {
+		if (child->tag == _tag) {
+			return child;
+		}
+	}
+
+	return nullptr;
+}
 
 Component* GameObject::addComponent(Component* _component)
 {
