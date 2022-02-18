@@ -106,8 +106,6 @@ void GameObject::setTag(std::string _tag) { tag = _tag; }
 
 Transform* GameObject::getTransform() { return transform; }
 
-void GameObject::setTransform(Transform* _transform) { transform = _transform; }
-
 void GameObject::setTransform(b2Vec2 _position, b2Rot _rotation, b2Vec2 _scale)
 {
 	transform->setPosition(_position);
