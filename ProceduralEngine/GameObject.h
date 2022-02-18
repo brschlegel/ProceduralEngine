@@ -37,6 +37,7 @@ public:
 	void setTag(std::string _tag);
 
 	Transform* getTransform();
+	void setTransform(Transform* _transform);
 	void setTransform(b2Vec2 _position, b2Rot _rotation, b2Vec2 _scale);
 	void setTransform(float32 positionX, float32 positionY, float32 angle, float32 scaleX, float32 scaleY);
 
