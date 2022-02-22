@@ -53,10 +53,10 @@ public:
 	Component* addComponent(Component* _component);
 	
 	// Gets a component of the requested type if it exists. Returns 'nullptr' if a component is not found.
-	template <class Type> Component* getComponent() {
+	template <class Type> Type* getComponent() {
 		for (Component* component : components) {
-			if (typeid(Type) == typeid(component)) {
-				return component;
+			if (dynamic_cast<Type*>(component) != nullptr) {
+				return static_cast<Type*>(component);
 			}
 		}
 

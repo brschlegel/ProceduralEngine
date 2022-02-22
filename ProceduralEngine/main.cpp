@@ -29,6 +29,8 @@ int main()
     Debug::print(go->getChild(0)->toString());
     Debug::print(child->toString());
 
+    Debug::print(go->getComponent<Transform>()->toString());
+
     Scene scene2 = Scene(scene);
 
     Random::seedGenerator();
