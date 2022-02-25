@@ -31,8 +31,8 @@ void DrawManager::DrawDebug(sf::RenderWindow* window)
                 int offset = distBetweenLines * numLines / 2;
                 if (i != numLines / 2)
                 {
-                    Debug::DrawLine(b2Vec2(i * distBetweenLines - offset, 100), b2Vec2(i * distBetweenLines - offset, -100), sf::Color(255, 0, 0, 50));
-                    Debug::DrawLine(b2Vec2(100, i * distBetweenLines - offset), b2Vec2(-100, i * distBetweenLines - offset), sf::Color(0, 0, 255, 50));
+                    Debug::DrawLine(b2Vec2(i * distBetweenLines - offset, 1000), b2Vec2(i * distBetweenLines - offset, -1000), sf::Color(255, 0, 0, 50));
+                    Debug::DrawLine(b2Vec2(1000, i * distBetweenLines - offset), b2Vec2(-1000, i * distBetweenLines - offset), sf::Color(0, 0, 255, 50));
                 }
                 else
                 {
