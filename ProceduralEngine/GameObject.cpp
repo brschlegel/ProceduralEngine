@@ -21,9 +21,11 @@ GameObject::~GameObject()
 {
 	parent = nullptr;
 
-	for (Component* component : components) {
-		delete component;
-		component = nullptr;
+	std::cout << name << std::endl;
+	for (int i = 0; i < components.size(); i++) {
+		std::cout << components[i] << std::endl;
+		delete components[i];
+		components[i] = nullptr;
 	}
 
 	for (GameObject* child : children) {
@@ -44,11 +46,14 @@ GameObject::GameObject(const GameObject& _other)
 
 	for (Component* component : _other.components) {
 		// This line will be used to check then push a type
-		// 		if (static_cast<Transform*>(component) != nullptr) {
-		//			components.push_back(new Transform(*static_cast<Transform*>(component)));
+		// 		if (dynamic_cast<Type*>(component) != nullptr) {
+		//			components.push_back(new Type(*static_cast<Type*>(component)));
 		//		}
-		if (static_cast<Transform*>(component) != nullptr) {
+		if (dynamic_cast<Transform*>(component) != nullptr) {
 			components.push_back(transform);
+		}
+		else if (dynamic_cast<SpriteRenderer*>(component) != nullptr) {
+			addComponent(new SpriteRenderer(*static_cast<SpriteRenderer*>(component)));
 		}
 	}
 
@@ -81,8 +86,11 @@ GameObject& GameObject::operator=(const GameObject& _other)
 			// 		if (static_cast<Type*>(component) != nullptr) {
 			//			components.push_back(new Type(*static_cast<Type*>(component)));
 			//		}
-			if (static_cast<Transform*>(component) != nullptr) {
+			if (dynamic_cast<Transform*>(component) != nullptr) {
 				components.push_back(transform);
+			}
+			else if (dynamic_cast<SpriteRenderer*>(component) != nullptr) {
+				addComponent(new SpriteRenderer(*static_cast<SpriteRenderer*>(component)));
 			}
 		}
 
@@ -160,6 +168,7 @@ Component* GameObject::addComponent(Component* _component)
 	_component->setGameObject(this);
 	_component->init();
 	components.push_back( _component);
+
 	return _component;
 }
 

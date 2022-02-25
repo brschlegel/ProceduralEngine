@@ -3,8 +3,8 @@
 #include <map>
 #include "Component.h"
 #include "Transform.h"
+#include "SpriteRenderer.h"
 #include "IScriptable.h"
-#include <typeinfo>
 #include "Debug.h"
 
 class GameObject : public IScriptable
