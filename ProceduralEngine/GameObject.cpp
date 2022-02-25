@@ -155,7 +155,9 @@ GameObject* GameObject::getChildByTag(std::string _tag)
 
 Component* GameObject::addComponent(Component* _component)
 {
-	components.push_back(_component);
+	_component->setGameObject(this);
+	_component->init();
+	components.push_back( _component);
 	return _component;
 }
 

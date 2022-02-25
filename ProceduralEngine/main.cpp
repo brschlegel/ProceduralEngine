@@ -4,6 +4,7 @@
 #include <string>
 #include "PerlinNoise.h"
 #include "Scene.h"
+#include "SpriteRenderer.h"
 
 int windowWidth = 960;
 int windowHeight = 540;
@@ -17,9 +18,11 @@ int main()
     GameObject* go = scene.getGameObjectByName("Bob");
 
     scene.addGameObject(new GameObject("Jim", go));
+   
 
     Debug::print(go->getTransform()->toString());
-    go->setTransform(10, 15, 3.14, 1, 1);
+    go->setTransform(0, 0, 0, .5f, .5f);
+    go->addComponent(new SpriteRenderer("Egg"));
     Debug::print(go->getTransform()->toString());
 
     GameObject* child = go->getChildByName("Jim");
@@ -55,8 +58,11 @@ int main()
         }
 
         drawManager.DrawDebug(&window);
+        go->getComponent<SpriteRenderer>()->draw(&window);
         window.display();
     }
 
-    return 0;
+    SpriteRenderer::unloadTextures();
+
+    return 0; 
 }

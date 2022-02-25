@@ -28,8 +28,13 @@ public:
 
 	// The GameObject this Component is attached to
 	GameObject* getGameObject();
+	void setGameObject(GameObject* _gameObject);
 
 	virtual std::string toString() = 0;
+	/// <summary>
+	/// Called after setting the gameobject, so we can get data from that 
+	/// </summary>
+	virtual void init();
 
 protected:
 	GameObject* gameObject;

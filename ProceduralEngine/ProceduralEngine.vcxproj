@@ -158,6 +158,7 @@
     <ClCompile Include="PMath.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +171,7 @@
     <ClInclude Include="PMath.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

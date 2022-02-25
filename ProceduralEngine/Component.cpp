@@ -24,3 +24,12 @@ Component& Component::operator=(const Component& _other)
 }
 
 GameObject* Component::getGameObject() { return gameObject; }
+
+void Component::setGameObject(GameObject* _gameObject)
+{
+	gameObject = _gameObject;
+}
+
+void Component::init()
+{
+}

@@ -27,3 +27,8 @@ float PMath::dot(b2Vec2 a, b2Vec2 b)
 {
     return a.x * b.x + a.y * b.y;
 }
+
+float PMath::radToDeg(float radians)
+{
+    return radians / b2_pi * 180.f;
+}

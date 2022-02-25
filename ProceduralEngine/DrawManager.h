@@ -1,7 +1,7 @@
 #pragma once
 #include "Debug.h"
 
-#define PIXEL_PER_METER 10.0f;
+#define PIXEL_PER_METER 2.0f;
 
 class DrawManager
 {

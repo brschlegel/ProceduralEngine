@@ -1,8 +1,11 @@
 #pragma once
 #include <vector>
+#include <map>
 #include "Component.h"
 #include "Transform.h"
 #include "IScriptable.h"
+#include <typeinfo>
+#include "Debug.h"
 
 class GameObject : public IScriptable
 {
@@ -53,10 +56,11 @@ public:
 	Component* addComponent(Component* _component);
 	
 	// Gets a component of the requested type if it exists. Returns 'nullptr' if a component is not found.
-	template <class Type> Component* getComponent() {
+	template <class Type> Type* getComponent() {
 		for (Component* component : components) {
-			if (typeid(Type) == typeid(component)) {
-				return component;
+			Type* cast = dynamic_cast<Type*>(component);
+			if ( cast!= nullptr) {
+				return cast;
 			}
 		}
 
