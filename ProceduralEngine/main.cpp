@@ -21,7 +21,7 @@ int main()
    
 
     Debug::print(go->getTransform()->toString());
-    go->setTransform(0, 0, 0, .5f, .5f);
+    go->setTransform(0, 0, 0, 1, 1);
     go->addComponent(new SpriteRenderer("Egg"));
     Debug::print(go->getTransform()->toString());
 
@@ -58,7 +58,7 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-
+        
         drawManager.DrawDebug(&window);
         go->getComponent<SpriteRenderer>()->draw(&window);
         window.display();

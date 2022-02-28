@@ -31,3 +31,8 @@ std::string Transform::toString() {
 	parsed += "Scale: (" + std::to_string(scale.x) + ", " + std::to_string(scale.y) + ")\n";
 	return parsed;
 }
+
+b2Transform Transform::getb2Transform()
+{
+	return b2Transform(position, rotation);
+}

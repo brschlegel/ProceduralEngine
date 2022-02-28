@@ -58,6 +58,10 @@ public:
 	/// A string representation of a transform
 	/// </summary>
 	std::string toString();
+	/// <summary>
+	/// Makes a b2Transform from the information here
+	/// </summary>
+	b2Transform getb2Transform();
 
 private:
 	b2Vec2 position;

@@ -26,7 +26,7 @@ void SpriteRenderer::draw(sf::RenderWindow* window)
 void SpriteRenderer::setScale(b2Vec2 scale)
 {	
 	sf::Vector2f sfScale = sf::Vector2f(scale.x , scale.y);
-	sfScale *= PIXEL_PER_METER;
+	//sfScale *= PIXEL_PER_METER;
 	sprite.setScale(sfScale);
 }
 
