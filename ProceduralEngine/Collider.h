@@ -5,6 +5,7 @@ class Collider :
 {
 public:
     bool CheckCollision(Collider* other);
+    void OnCollision(Collider* other);
     b2AABB getAABB();
     b2Shape* getShape();
 protected:

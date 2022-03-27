@@ -14,7 +14,6 @@ SpriteRenderer::SpriteRenderer(std::string name)
 	sprite = sf::Sprite();
 	sprite.setTexture(*texture);
 	
-
 }
 
 void SpriteRenderer::draw(sf::RenderWindow* window)

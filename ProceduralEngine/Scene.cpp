@@ -4,6 +4,7 @@
 Scene::Scene(std::string _name) {
 	name = _name;
 	gameObjects = std::vector<GameObject*>();
+	drawManager =  DrawManager();
 }
 
 std::string Scene::getName() { return name; }

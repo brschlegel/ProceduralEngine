@@ -4,6 +4,7 @@ int DrawManager::windowHeight;
 
 bool Debug::drawGrid;
 bool Debug::drawDebug;
+
 sf::Vector2f DrawManager::convertToSF(b2Vec2 vec)
 {
     vec *= PIXEL_PER_METER;
@@ -60,3 +61,19 @@ void DrawManager::DrawDebug(sf::RenderWindow* window)
         Debug::circles.clear();
     }
 }
+
+SpriteRenderer* DrawManager::createSpriteRenderer(std::string name)
+{
+    SpriteRenderer* s = new SpriteRenderer(name);
+    sprites.push_back(s);
+    return s;
+}
+
+void DrawManager::drawSpriteRenderers(sf::RenderWindow* window)
+{
+    for (int i = 0; i < sprites.size(); i++)
+    {
+        sprites[i]->draw(window);
+    }
+}
+
