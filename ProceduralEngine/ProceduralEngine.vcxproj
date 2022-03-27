@@ -173,6 +173,7 @@
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Debug.h" />
+    <ClInclude Include="Delegate.h" />
     <ClInclude Include="DrawManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="IScriptable.h" />
