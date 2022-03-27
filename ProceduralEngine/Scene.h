@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
-#include "GameObject.h"
+#include "CollisionManager.h";
 
 class Scene
 {
@@ -38,6 +38,7 @@ public:
 
 	//Managers for different components in the scene
 	DrawManager drawManager;
+	CollisionManager collisionManager;
 
 private:
 	std::vector<GameObject*> gameObjects;

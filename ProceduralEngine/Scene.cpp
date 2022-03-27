@@ -4,7 +4,6 @@
 Scene::Scene(std::string _name) {
 	name = _name;
 	gameObjects = std::vector<GameObject*>();
-	drawManager =  DrawManager();
 }
 
 std::string Scene::getName() { return name; }
@@ -65,6 +64,8 @@ Scene::Scene(const Scene& _other)
 	}
 
 	name = _other.name;
+	drawManager = _other.drawManager;
+	collisionManager = _other.collisionManager;
 }
 
 Scene& Scene::operator=(const Scene& _other)
@@ -80,6 +81,8 @@ Scene& Scene::operator=(const Scene& _other)
 		}
 
 		name = _other.name;
+		drawManager = _other.drawManager;
+		collisionManager = _other.collisionManager;
 	}
 
 	return *this;

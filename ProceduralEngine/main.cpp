@@ -4,8 +4,7 @@
 #include <string>
 #include "PerlinNoise.h"
 #include "Scene.h"
-#include "SpriteRenderer.h"
-#include "BoxCollider.h"
+
 
 
 int windowWidth = 960;
@@ -25,7 +24,13 @@ int main()
     Debug::print(go->getTransform()->toString());
     go->setTransform(0, 0, 0, 1, 1);
     go->addComponent(scene.drawManager.createSpriteRenderer("egg"));
-    go->addComponent(new BoxCollider(b2Vec2(1, 1)));
+    go->addComponent(scene.collisionManager.createBoxCollider(b2Vec2(1,1)));
+
+    GameObject* other = scene.addGameObject(new GameObject("other"));
+    other->addComponent(scene.drawManager.createSpriteRenderer("egg"));
+    other->addComponent(scene.collisionManager.createBoxCollider(b2Vec2(1, 1)));
+    other->setTransform(1, 1, 0, 1, 1);
+
     Debug::print(go->getTransform()->toString());
 
     GameObject* child = go->getChildByName("Jim");
@@ -62,7 +67,7 @@ int main()
 
                 window.close();
         }
-        go->getComponent<BoxCollider>()->DebugDraw();
+        
         scene.drawManager.DrawDebug(&window);
         scene.drawManager.drawSpriteRenderers(&window);
      

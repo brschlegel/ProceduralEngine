@@ -7,10 +7,24 @@ CollisionManager::CollisionManager()
 BoxCollider* CollisionManager::createBoxCollider(b2Vec2 size)
 {
 	BoxCollider* c = new BoxCollider(size);
-	boxColliders.push_back(c);
+	colliders.push_back(c);
 	return c;
 }
 
 void CollisionManager::update()
 {
+	for (int i = 0; i < colliders.size(); i++)
+	{
+		for (int j = 0; j < colliders.size(); j++)
+		{
+			if (i < j)
+			{
+				if(colliders[i]->CheckCollision(colliders[j]));
+				{
+					colliders[i]->OnCollision(colliders[j]);
+					colliders[j]->OnCollision(colliders[i]);
+				}
+			}
+		}
+	}
 }

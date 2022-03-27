@@ -7,6 +7,7 @@ bool Collider::CheckCollision(Collider* other)
 
 void Collider::OnCollision(Collider* other)
 {
+    Debug::print("Collided");
 }
 
 b2AABB Collider::getAABB()
