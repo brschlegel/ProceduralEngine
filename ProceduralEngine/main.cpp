@@ -48,6 +48,7 @@ int main()
 
     Debug::drawDebug = true;
     Debug::drawGrid = true;
+    Debug::drawColliders = true;
 
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "SFML works!");
     DrawManager::windowWidth = windowWidth;
@@ -68,10 +69,14 @@ int main()
                 window.close();
         }
         
+        if (Debug::drawColliders)
+        {
+            scene.collisionManager.DrawDebug();
+        }
         scene.drawManager.DrawDebug(&window);
         scene.drawManager.drawSpriteRenderers(&window);
         scene.collisionManager.update();
-     
+        
     
         window.display();
     }

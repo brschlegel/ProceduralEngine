@@ -7,7 +7,7 @@ class BoxCollider :
 public:
    
     void init() override;
-    void DebugDraw();
+    void debugDraw() override;
     std::string toString() override;
 private:
     b2Vec2 size;

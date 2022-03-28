@@ -28,5 +28,6 @@ public:
 	//Draw flags
 	static bool drawGrid;
 	static bool drawDebug;
+	static bool drawColliders;
 };
 

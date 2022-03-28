@@ -8,6 +8,7 @@ public:
     void OnCollision(Collider* other);
     b2AABB getAABB();
     b2Shape* getShape();
+    virtual void debugDraw() = 0;
 protected:
     b2Shape* shape;
 };

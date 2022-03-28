@@ -8,6 +8,7 @@ public:
 	CollisionManager();
 	BoxCollider* createBoxCollider(b2Vec2 size);
 	void update();
+	void DrawDebug();
 private:
 	vector<Collider*> colliders;
 };

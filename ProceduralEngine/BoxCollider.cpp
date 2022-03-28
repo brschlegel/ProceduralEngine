@@ -12,7 +12,7 @@ void BoxCollider::init()
 {
 }
 
-void BoxCollider::DebugDraw()
+void BoxCollider::debugDraw()
 {
 	Debug::DrawRectangle(gameObject->getTransform()->getPosition(), size.x, size.y);
 }

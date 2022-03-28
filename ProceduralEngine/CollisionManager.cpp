@@ -1,5 +1,7 @@
 #include "CollisionManager.h"
 
+
+bool Debug::drawColliders;
 CollisionManager::CollisionManager()
 {
 }
@@ -26,5 +28,13 @@ void CollisionManager::update()
 				}
 			}
 		}
+	}
+}
+
+void CollisionManager::DrawDebug()
+{
+	for (int i = 0; i < colliders.size(); i++)
+	{
+		colliders[i]->debugDraw();
 	}
 }
