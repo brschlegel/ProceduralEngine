@@ -21,7 +21,7 @@ void CollisionManager::update()
 		{
 			if (i < j)
 			{
-				if(colliders[i]->CheckCollision(colliders[j]));
+				if(colliders[i]->CheckCollision(colliders[j]))
 				{
 					colliders[i]->OnCollision(colliders[j]);
 					colliders[j]->OnCollision(colliders[i]);
