@@ -29,7 +29,7 @@ int main()
     GameObject* other = scene.addGameObject(new GameObject("other"));
     other->addComponent(scene.drawManager.createSpriteRenderer("egg"));
     other->addComponent(scene.collisionManager.createBoxCollider(b2Vec2(1, 1)));
-    other->setTransform(1, 1, 0, 1, 1);
+    other->setTransform(2, 2, 0, 1, 1);
 
     Debug::print(go->getTransform()->toString());
 
@@ -70,6 +70,7 @@ int main()
         
         scene.drawManager.DrawDebug(&window);
         scene.drawManager.drawSpriteRenderers(&window);
+        scene.collisionManager.update();
      
     
         window.display();

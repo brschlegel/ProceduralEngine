@@ -11,6 +11,10 @@ SpriteRenderer::SpriteRenderer(std::string name)
 		texture->loadFromFile(name);
 		textureMap[name] = texture;
 	}
+	else
+	{
+		texture = textureMap[name];
+	}
 	sprite = sf::Sprite();
 	sprite.setTexture(*texture);
 	
