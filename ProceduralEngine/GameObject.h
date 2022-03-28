@@ -7,6 +7,7 @@
 #include "IScriptable.h"
 #include "Debug.h"
 
+
 class GameObject : public IScriptable
 {
 public:

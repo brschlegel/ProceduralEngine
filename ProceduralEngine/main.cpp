@@ -9,6 +9,7 @@
 
 int windowWidth = 960;
 int windowHeight = 540;
+unsigned int DelegateHandle::CURRENT_ID;
 
 int main()
 {
@@ -19,12 +20,16 @@ int main()
     GameObject* go = scene.getGameObjectByName("Bob");
 
     scene.addGameObject(new GameObject("Jim", go));
-   
+
 
     Debug::print(go->getTransform()->toString());
     go->setTransform(0, 0, 0, 1, 1);
     go->addComponent(scene.drawManager.createSpriteRenderer("egg"));
-    go->addComponent(scene.collisionManager.createBoxCollider(b2Vec2(1,1)));
+    BoxCollider* collider = (BoxCollider*)go->addComponent(scene.collisionManager.createBoxCollider(b2Vec2(1, 1)));
+    
+    collider->onCollisionDelegate.AddLambda([](Collider* other) {
+        Debug::print("collided");
+        });
 
     GameObject* other = scene.addGameObject(new GameObject("other"));
     other->addComponent(scene.drawManager.createSpriteRenderer("egg"));
