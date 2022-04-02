@@ -72,11 +72,11 @@ public:
 	// DECLARING METHODS FROM ISCRIPTABLE INTERFACE
 	// --------------------------------------------
 
-	void start();
-	void update();
-	void fixedUpdate();
-	void onEnable();
-	void onDisable();
+	void start() override;
+	void update() override;
+	void fixedUpdate() override;
+	void onEnable() override;
+	void onDisable() override;
 
 private:
 	std::string name;

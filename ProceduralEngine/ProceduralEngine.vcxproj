@@ -166,6 +166,8 @@
     <ClCompile Include="PMath.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Script.cpp" />
+    <ClCompile Include="ScriptManager.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
@@ -183,6 +185,8 @@
     <ClInclude Include="PMath.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Script.h" />
+    <ClInclude Include="ScriptManager.h" />
     <ClInclude Include="SpriteRenderer.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>

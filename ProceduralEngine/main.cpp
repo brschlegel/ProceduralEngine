@@ -4,6 +4,7 @@
 #include <string>
 #include "PerlinNoise.h"
 #include "Scene.h"
+#include "ScriptManager.h"
 
 
 
@@ -13,6 +14,7 @@ unsigned int DelegateHandle::CURRENT_ID;
 
 int main()
 {
+    // Testing Scenes and GameObjects
     Scene scene = Scene();
 
     scene.addGameObject(new GameObject());
@@ -21,10 +23,10 @@ int main()
 
     scene.addGameObject(new GameObject("Jim", go));
 
-
     Debug::print(go->getTransform()->toString());
     go->setTransform(0, 0, 0, 1, 1);
     go->addComponent(scene.drawManager.createSpriteRenderer("egg"));
+    go->addComponent(scene.scriptManager.createScript("TestScript"));
     BoxCollider* collider = (BoxCollider*)go->addComponent(scene.collisionManager.createBoxCollider(b2Vec2(1, 1)));
     
     collider->onCollisionDelegate.AddLambda([](Collider* other) {

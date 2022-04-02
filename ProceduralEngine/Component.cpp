@@ -33,3 +33,23 @@ void Component::setGameObject(GameObject* _gameObject)
 void Component::init()
 {
 }
+
+void Component::start()
+{
+}
+
+void Component::update()
+{
+}
+
+void Component::fixedUpdate()
+{
+}
+
+void Component::onEnable()
+{
+}
+
+void Component::onDisable()
+{
+}

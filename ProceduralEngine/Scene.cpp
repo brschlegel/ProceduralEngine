@@ -12,6 +12,7 @@ void Scene::setName(std::string _name) { name = _name; }
 GameObject* Scene::addGameObject(GameObject* _gameObject)
 {
 	gameObjects.push_back(_gameObject);
+	_gameObject->start();
 	return _gameObject;
 }
 
@@ -66,6 +67,7 @@ Scene::Scene(const Scene& _other)
 	name = _other.name;
 	drawManager = _other.drawManager;
 	collisionManager = _other.collisionManager;
+	scriptManager = _other.scriptManager;
 }
 
 Scene& Scene::operator=(const Scene& _other)
@@ -83,6 +85,7 @@ Scene& Scene::operator=(const Scene& _other)
 		name = _other.name;
 		drawManager = _other.drawManager;
 		collisionManager = _other.collisionManager;
+		scriptManager = _other.scriptManager;
 	}
 
 	return *this;

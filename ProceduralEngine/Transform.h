@@ -58,6 +58,7 @@ public:
 	/// A string representation of a transform
 	/// </summary>
 	std::string toString();
+
 	/// <summary>
 	/// Makes a b2Transform from the information here
 	/// </summary>

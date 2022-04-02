@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include "CollisionManager.h";
+#include "ScriptManager.h"
 
 class Scene
 {
@@ -39,6 +40,7 @@ public:
 	//Managers for different components in the scene
 	DrawManager drawManager;
 	CollisionManager collisionManager;
+	ScriptManager scriptManager;
 
 private:
 	std::vector<GameObject*> gameObjects;

@@ -1,5 +1,6 @@
 #include "GameObject.h"
 #include <iostream>
+#include "Script.h"
 
 GameObject::GameObject(std::string _name, GameObject* _parent) {
 	name = _name;
@@ -55,6 +56,9 @@ GameObject::GameObject(const GameObject& _other)
 		else if (dynamic_cast<SpriteRenderer*>(component) != nullptr) {
 			addComponent(new SpriteRenderer(*static_cast<SpriteRenderer*>(component)));
 		}
+		else if (dynamic_cast<Script*>(component) != nullptr) {
+			addComponent(new Script(*static_cast<Script*>(component)));
+		}
 	}
 
 	for (GameObject* child : _other.children) {
@@ -83,7 +87,7 @@ GameObject& GameObject::operator=(const GameObject& _other)
 
 		for (Component* component : _other.components) {
 			// This block will be used to check then push a new component
-			// 		if (static_cast<Type*>(component) != nullptr) {
+			// 		if (dynamic_cast<Type*>(component) != nullptr) {
 			//			components.push_back(new Type(*static_cast<Type*>(component)));
 			//		}
 			if (dynamic_cast<Transform*>(component) != nullptr) {
@@ -91,6 +95,9 @@ GameObject& GameObject::operator=(const GameObject& _other)
 			}
 			else if (dynamic_cast<SpriteRenderer*>(component) != nullptr) {
 				addComponent(new SpriteRenderer(*static_cast<SpriteRenderer*>(component)));
+			}
+			else if (dynamic_cast<Script*>(component) != nullptr) {
+				addComponent(new Script(*static_cast<Script*>(component)));
 			}
 		}
 
@@ -167,6 +174,7 @@ Component* GameObject::addComponent(Component* _component)
 {
 	_component->setGameObject(this);
 	_component->init();
+	_component->start();
 	components.push_back( _component);
 
 	return _component;
@@ -174,20 +182,95 @@ Component* GameObject::addComponent(Component* _component)
 
 void GameObject::start()
 {
+	for (Component* component : components) {
+		// This block will be used to check then push a new component
+		// 		if (dynamic_cast<Type*>(component) != nullptr) {
+		//			components.push_back(new Type(*static_cast<Type*>(component)));
+		//		}
+		if (dynamic_cast<Transform*>(component) != nullptr) {
+			transform->start();
+		}
+		else if (dynamic_cast<SpriteRenderer*>(component) != nullptr) {
+			static_cast<SpriteRenderer*>(component)->start();
+		}
+		else if (dynamic_cast<Script*>(component) != nullptr) {
+			static_cast<Script*>(component)->start();
+		}
+	}
 }
 
 void GameObject::update()
 {
+	for (Component* component : components) {
+		// This block will be used to check then push a new component
+		// 		if (dynamic_cast<Type*>(component) != nullptr) {
+		//			components.push_back(new Type(*static_cast<Type*>(component)));
+		//		}
+		if (dynamic_cast<Transform*>(component) != nullptr) {
+			transform->update();
+		}
+		else if (dynamic_cast<SpriteRenderer*>(component) != nullptr) {
+			static_cast<SpriteRenderer*>(component)->update();
+		}
+		else if (dynamic_cast<Script*>(component) != nullptr) {
+			static_cast<Script*>(component)->update();
+		}
+	}
 }
 
 void GameObject::fixedUpdate()
 {
+	for (Component* component : components) {
+		// This block will be used to check then push a new component
+		// 		if (dynamic_cast<Type*>(component) != nullptr) {
+		//			components.push_back(new Type(*static_cast<Type*>(component)));
+		//		}
+		if (dynamic_cast<Transform*>(component) != nullptr) {
+			transform->fixedUpdate();
+		}
+		else if (dynamic_cast<SpriteRenderer*>(component) != nullptr) {
+			static_cast<SpriteRenderer*>(component)->fixedUpdate();
+		}
+		else if (dynamic_cast<Script*>(component) != nullptr) {
+			static_cast<Script*>(component)->fixedUpdate();
+		}
+	}
 }
 
 void GameObject::onEnable()
 {
+	for (Component* component : components) {
+		// This block will be used to check then push a new component
+		// 		if (dynamic_cast<Type*>(component) != nullptr) {
+		//			components.push_back(new Type(*static_cast<Type*>(component)));
+		//		}
+		if (dynamic_cast<Transform*>(component) != nullptr) {
+			transform->onEnable();
+		}
+		else if (dynamic_cast<SpriteRenderer*>(component) != nullptr) {
+			static_cast<SpriteRenderer*>(component)->onEnable();
+		}
+		else if (dynamic_cast<Script*>(component) != nullptr) {
+			static_cast<Script*>(component)->onEnable();
+		}
+	}
 }
 
 void GameObject::onDisable()
 {
+	for (Component* component : components) {
+		// This block will be used to check then push a new component
+		// 		if (dynamic_cast<Type*>(component) != nullptr) {
+		//			components.push_back(new Type(*static_cast<Type*>(component)));
+		//		}
+		if (dynamic_cast<Transform*>(component) != nullptr) {
+			transform->onDisable();
+		}
+		else if (dynamic_cast<SpriteRenderer*>(component) != nullptr) {
+			static_cast<SpriteRenderer*>(component)->onDisable();
+		}
+		else if (dynamic_cast<Script*>(component) != nullptr) {
+			static_cast<Script*>(component)->onDisable();
+		}
+	}
 }
