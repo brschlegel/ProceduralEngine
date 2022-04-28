@@ -18,7 +18,7 @@ void Transform::setPosition(float32 x, float32 y) { position = b2Vec2(x, y); }
 b2Rot Transform::getRotation() { return rotation; }
 
 void Transform::setRotation(b2Rot _rotation) { rotation = _rotation; }
-void Transform::setRotation(float32 angle) { rotation = b2Rot(angle); }
+void Transform::setRotation(float32 angle) { rotation = b2Rot(PMath::degToRad(angle)); }
 
 b2Vec2 Transform::getScale() { return scale; }
 

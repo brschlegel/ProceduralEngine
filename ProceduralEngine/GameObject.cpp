@@ -22,9 +22,8 @@ GameObject::~GameObject()
 {
 	parent = nullptr;
 
-	std::cout << name << std::endl;
 	for (int i = 0; i < components.size(); i++) {
-		std::cout << components[i] << std::endl;
+
 		delete components[i];
 		components[i] = nullptr;
 	}

@@ -13,6 +13,15 @@ BoxCollider* CollisionManager::createBoxCollider(b2Vec2 size)
 	return c;
 }
 
+void CollisionManager::deleteBoxCollider(BoxCollider* b)
+{
+	auto it = std::find(colliders.begin(), colliders.end(), b);
+	if (it != colliders.end())
+	{
+		colliders.erase(it);
+	}
+}
+
 void CollisionManager::update()
 {
 	for (int i = 0; i < colliders.size(); i++)

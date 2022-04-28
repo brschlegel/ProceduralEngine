@@ -69,6 +69,15 @@ SpriteRenderer* DrawManager::createSpriteRenderer(std::string name)
     return s;
 }
 
+void DrawManager::deleteSpriteRenderer(SpriteRenderer* s)
+{
+    auto it = std::find(sprites.begin(), sprites.end(), s);
+    if (it != sprites.end())
+    {
+        sprites.erase(it);
+    }
+}
+
 void DrawManager::drawSpriteRenderers(sf::RenderWindow* window)
 {
     for (int i = 0; i < sprites.size(); i++)

@@ -10,6 +10,10 @@ Script::Script(std::string _fileName, GameObject* _gameObject) : Component::Comp
 	fileName = _fileName;
 }
 
+Script::Script()
+{
+}
+
 void Script::start()
 {
 	Debug::print("Hello Script!", true);

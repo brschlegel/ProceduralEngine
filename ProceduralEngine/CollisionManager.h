@@ -7,6 +7,7 @@ class CollisionManager
 public:
 	CollisionManager();
 	BoxCollider* createBoxCollider(b2Vec2 size);
+	void deleteBoxCollider(BoxCollider* b);
 	void update();
 	void DrawDebug();
 private:

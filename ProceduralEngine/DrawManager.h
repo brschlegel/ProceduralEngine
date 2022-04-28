@@ -13,6 +13,7 @@ public:
 	static b2Vec2 convertToB2(sf::Vector2f vec);
 	void DrawDebug(sf::RenderWindow* window);
 	SpriteRenderer* createSpriteRenderer(std::string name);
+	void deleteSpriteRenderer(SpriteRenderer* s);
 	void drawSpriteRenderers(sf::RenderWindow* window);
 private:
 	std::vector<SpriteRenderer*> sprites;

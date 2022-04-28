@@ -161,14 +161,19 @@
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="DrawManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PerlinNoise.cpp" />
+    <ClCompile Include="PipeManager.cpp" />
     <ClCompile Include="PMath.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Script.cpp" />
     <ClCompile Include="ScriptManager.cpp" />
+    <ClCompile Include="Scripts\GravityScript.cpp" />
+    <ClCompile Include="Scripts\MoveLeft.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
+    <ClCompile Include="Time.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -180,14 +185,19 @@
     <ClInclude Include="Delegate.h" />
     <ClInclude Include="DrawManager.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Input.h" />
     <ClInclude Include="IScriptable.h" />
     <ClInclude Include="PerlinNoise.h" />
+    <ClInclude Include="PipeManager.h" />
     <ClInclude Include="PMath.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Script.h" />
     <ClInclude Include="ScriptManager.h" />
+    <ClInclude Include="Scripts\GravityScript.h" />
+    <ClInclude Include="Scripts\MoveLeft.h" />
     <ClInclude Include="SpriteRenderer.h" />
+    <ClInclude Include="Time.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -37,10 +37,16 @@ public:
 	GameObject* getGameObjectByName(std::string _name);
 	GameObject* getGameObjectByTag(std::string _tag);
 
+	//Deletes gameobject
+	void destroyGameObject(GameObject* g);
+
 	//Managers for different components in the scene
 	DrawManager drawManager;
 	CollisionManager collisionManager;
 	ScriptManager scriptManager;
+
+	//Updates the scene
+	void update(sf::RenderWindow* window);
 
 private:
 	std::vector<GameObject*> gameObjects;

@@ -30,5 +30,24 @@ float PMath::dot(b2Vec2 a, b2Vec2 b)
 
 float PMath::radToDeg(float radians)
 {
-    return radians / b2_pi * 180.f;
+    return radians * 180 / b2_pi;
+}
+
+float PMath::degToRad(float degrees)
+{
+    return degrees * b2_pi/180.0f;
+}
+
+//There is likely a much more optomized way to do this 
+float PMath::clamp(float num, float min, float max)
+{
+    if (num < min)
+    {
+        return min;
+    }
+    else if (num > max)
+    {
+        return max;
+    }
+    return num;
 }

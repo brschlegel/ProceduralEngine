@@ -5,53 +5,50 @@
 #include "PerlinNoise.h"
 #include "Scene.h"
 #include "ScriptManager.h"
+#include "Scripts/GravityScript.h"
+#include "Time.h"
+#include "Input.h"
 
+#include "PipeManager.h"
 
 
 int windowWidth = 960;
 int windowHeight = 540;
 unsigned int DelegateHandle::CURRENT_ID;
+float Time::deltaTime;
+static bool sceneDone = false;
+
+Scene* BuildFlappy()
+{
+    Scene* scene = new Scene();
+    GameObject* flappy = scene->addGameObject(new GameObject("Flappy"));
+    flappy->setTransform(0, 0, 0, 1, 1);
+    BoxCollider* collider = (BoxCollider*)flappy->addComponent(scene->collisionManager.createBoxCollider(b2Vec2(1, 1)));
+    flappy->addComponent(scene->drawManager.createSpriteRenderer("Flappy"));
+    flappy->addComponent(new GravityScript());
+    collider->onCollisionDelegate.AddLambda([](Collider* other)
+        {
+            sceneDone = true;
+        });
+
+    GameObject* pipeManager = scene->addGameObject(new GameObject("Manager"));
+    pipeManager->addComponent(new PipeManager(scene));
+
+
+   
+
+    return scene;
+}
 
 int main()
 {
-    // Testing Scenes and GameObjects
-    Scene scene = Scene();
-
-    scene.addGameObject(new GameObject());
-    scene.addGameObject(new GameObject("Bob"));
-    GameObject* go = scene.getGameObjectByName("Bob");
-
-    scene.addGameObject(new GameObject("Jim", go));
-
-    Debug::print(go->getTransform()->toString());
-    go->setTransform(0, 0, 0, 1, 1);
-    go->addComponent(scene.drawManager.createSpriteRenderer("egg"));
-    go->addComponent(scene.scriptManager.createScript("TestScript"));
-    BoxCollider* collider = (BoxCollider*)go->addComponent(scene.collisionManager.createBoxCollider(b2Vec2(1, 1)));
-    
-    collider->onCollisionDelegate.AddLambda([](Collider* other) {
-        Debug::print("collided");
-        });
-
-    GameObject* other = scene.addGameObject(new GameObject("other"));
-    other->addComponent(scene.drawManager.createSpriteRenderer("egg"));
-    other->addComponent(scene.collisionManager.createBoxCollider(b2Vec2(1, 1)));
-    other->setTransform(.5f, .5f, 0, 1, 1);
-
-    Debug::print(go->getTransform()->toString());
-
-    GameObject* child = go->getChildByName("Jim");
-
-    Debug::print(go->toString());
-
-    Debug::print(go->getChild(0)->toString());
-    Debug::print(child->toString());
-
-    Debug::print(go->getComponent<Transform>()->toString());
-
-    Scene scene2 = Scene(scene);
-
     Random::seedGenerator();
+    // Testing Scenes and GameObjects
+    Scene* scene = BuildFlappy();
+
+
+   
+
 
     Debug::drawDebug = true;
     Debug::drawGrid = true;
@@ -60,31 +57,37 @@ int main()
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "SFML works!");
     DrawManager::windowWidth = windowWidth;
     DrawManager::windowHeight = windowHeight;
+    window.setKeyRepeatEnabled(false);
    
-
+    sf::Clock clock;
     //Test for Box2D, works for release too
     b2Vec2 gravity(0.0f, -10.0f);
     while (window.isOpen())
     {
-
+        Time::deltaTime = clock.restart().asSeconds();
+        Input::clear();
         window.clear(sf::Color(255, 255, 255));
         sf::Event event;
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
-
                 window.close();
+            if (event.type == sf::Event::KeyPressed)
+                Input::recordKeyPressed(event.key.code);
+            if (event.type == sf::Event::KeyReleased)
+                Input::recordKeyReleased(event.key.code);
+                
         }
         
-        if (Debug::drawColliders)
+        scene->update(&window);
+
+        if (sceneDone)
         {
-            scene.collisionManager.DrawDebug();
+            delete scene;
+            scene = BuildFlappy();
+            sceneDone = false;
         }
-        scene.drawManager.DrawDebug(&window);
-        scene.drawManager.drawSpriteRenderers(&window);
-        scene.collisionManager.update();
-        
-    
+
         window.display();
     }
 

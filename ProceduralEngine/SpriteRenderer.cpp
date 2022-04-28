@@ -22,7 +22,11 @@ SpriteRenderer::SpriteRenderer(std::string name)
 
 void SpriteRenderer::draw(sf::RenderWindow* window)
 {
-	sprite.setPosition(DrawManager::convertToSF(getGameObject()->getTransform()->getPosition()));
+	Transform* t = getGameObject()->getTransform();
+	sprite.setPosition(DrawManager::convertToSF(t->getPosition()));
+	setScale(t->getScale());
+	setRotation(t->getRotation());
+
 	window->draw(sprite);
 }
 

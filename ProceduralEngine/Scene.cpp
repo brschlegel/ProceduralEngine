@@ -36,6 +36,42 @@ GameObject* Scene::getGameObjectByTag(std::string _tag) {
 	return nullptr;
 }
 
+void Scene::destroyGameObject(GameObject* g)
+{
+	std::vector<GameObject*>::iterator it = std::find(gameObjects.begin(), gameObjects.end(), g);
+	if (it != gameObjects.end())
+	{
+		//There has to be a better way of doing this
+		SpriteRenderer* sprite = g->getComponent<SpriteRenderer>();
+		if(sprite != nullptr)
+			drawManager.deleteSpriteRenderer(sprite);
+		BoxCollider* box = g->getComponent<BoxCollider>();
+		if (box != nullptr)
+			collisionManager.deleteBoxCollider(box);
+
+		gameObjects.erase(it);
+		delete g;
+	}
+}
+
+void Scene::update(sf::RenderWindow* window)
+{
+	if (Debug::drawColliders)
+	{
+		collisionManager.DrawDebug();
+	}
+	collisionManager.update();
+	drawManager.DrawDebug(window);
+	drawManager.drawSpriteRenderers(window);
+	int i = 0;
+	for (GameObject* g : gameObjects)
+	{
+		g->update();
+		i++;
+	}
+
+}
+
 Scene::~Scene()
 {
 	for (int i = 0; i < gameObjects.size(); i++) {

@@ -8,6 +8,7 @@ class Script :
 public:
     Script(std::string fileName);
     Script(std::string fileName, GameObject* _gameObject);
+    Script();
 
     virtual void start();
     virtual void update();
