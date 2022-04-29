@@ -3,21 +3,8 @@
 std::map<std::string, sf::Texture*> SpriteRenderer::textureMap;
 SpriteRenderer::SpriteRenderer(std::string name)
 {
-	name += ".png";
-	name = "Images/" + name;
-	sf::Texture* texture = new sf::Texture();
-	if (textureMap.find(name) == textureMap.end())
-	{
-		texture->loadFromFile(name);
-		textureMap[name] = texture;
-	}
-	else
-	{
-		texture = textureMap[name];
-	}
 	sprite = sf::Sprite();
-	sprite.setTexture(*texture);
-	
+	setSprite(name);
 }
 
 void SpriteRenderer::draw(sf::RenderWindow* window)
@@ -40,6 +27,25 @@ void SpriteRenderer::setScale(b2Vec2 scale)
 void SpriteRenderer::setRotation(b2Rot rotation)
 {
 	sprite.setRotation(PMath::radToDeg(rotation.GetAngle()));
+}
+
+void SpriteRenderer::setSprite(std::string name)
+{
+	name += ".png";
+	name = "Images/" + name;
+	sf::Texture* texture = new sf::Texture();
+	if (textureMap.find(name) == textureMap.end())
+	{
+		texture->loadFromFile(name);
+		textureMap[name] = texture;
+	}
+	else
+	{
+		texture = textureMap[name];
+	}
+
+	sprite.setTexture(*texture);
+
 }
 
 std::string SpriteRenderer::toString()

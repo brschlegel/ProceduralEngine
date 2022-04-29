@@ -18,21 +18,27 @@ void PipeManager::start()
 void PipeManager::update()
 {
 	//Yeah this field is ugly but oh whale
-	bool spawnedPipeThisFrame = false;
-	for (int i = pipes.size() -1; i >= 0; i--)
+	//Deleting these objects in a backwards loop was acting super weird, so here we go
+	std::vector < std::vector<GameObject*>> toDelete;
+	for (int i = 0; i < pipes.size(); i++)
 	{
+		
 		if (pipes[i][0]->getTransform()->getPosition().x < -17.0f)
 		{
 			for (int j = 0; j < pipes[i].size(); j++)
 			{
-				scene->destroyGameObject(pipes[i][j]);
+				scene->destroyGameObjectNow(pipes[i][j]);
 			}
-			pipes.erase(pipes.begin() + i);
+			toDelete.push_back(pipes[i]);
 			buildPipe(17.5f);
 		}
 	}
 
-
+	for (int i = 0; i < toDelete.size(); i++)
+	{
+		pipes.erase(std::find(pipes.begin(), pipes.end(), toDelete[i]));
+	}
+	toDelete.clear();
 }
 
 void PipeManager::buildPipe(float x)

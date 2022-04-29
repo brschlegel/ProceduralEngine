@@ -16,6 +16,7 @@ public:
     //We have seperate setScale and setRotation methods because I would assume that scale and rotation often don't need to be set every frame
     void setScale(b2Vec2 scale);
     void setRotation(b2Rot rotation);
+    void setSprite(std::string name);
     void init();
     std::string toString();
     static void unloadTextures();

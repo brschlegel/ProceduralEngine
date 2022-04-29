@@ -39,6 +39,8 @@ public:
 
 	//Deletes gameobject
 	void destroyGameObject(GameObject* g);
+	void destroyGameObjectNow(GameObject* g);
+	void cleanDestroyedObjects();
 
 	//Managers for different components in the scene
 	DrawManager drawManager;
@@ -51,5 +53,6 @@ public:
 private:
 	std::vector<GameObject*> gameObjects;
 	std::string name;
+	std::vector<GameObject*> toDestroy;
 };
 

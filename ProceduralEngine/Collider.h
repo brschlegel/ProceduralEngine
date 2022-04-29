@@ -10,6 +10,7 @@ public:
     b2AABB getAABB();
     b2Shape* getShape();
     virtual void debugDraw() = 0;
+    bool testPoint(b2Vec2 point);
     MulticastDelegate<Collider*> onCollisionDelegate;
 protected:
     b2Shape* shape;

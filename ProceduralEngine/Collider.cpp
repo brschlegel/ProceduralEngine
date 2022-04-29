@@ -23,3 +23,8 @@ b2Shape* Collider::getShape()
 {
     return shape;
 }
+
+bool Collider::testPoint(b2Vec2 point)
+{
+    return shape->TestPoint(gameObject->getTransform()->getb2Transform(), point);
+}

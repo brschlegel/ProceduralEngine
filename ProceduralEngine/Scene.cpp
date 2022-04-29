@@ -39,6 +39,15 @@ GameObject* Scene::getGameObjectByTag(std::string _tag) {
 void Scene::destroyGameObject(GameObject* g)
 {
 	std::vector<GameObject*>::iterator it = std::find(gameObjects.begin(), gameObjects.end(), g);
+	if (it != gameObjects.end()) 
+	{
+		toDestroy.push_back(g);
+	}
+}
+
+void Scene::destroyGameObjectNow(GameObject* g)
+{
+	std::vector<GameObject*>::iterator it = std::find(gameObjects.begin(), gameObjects.end(), g);
 	if (it != gameObjects.end())
 	{
 		//There has to be a better way of doing this
@@ -54,6 +63,14 @@ void Scene::destroyGameObject(GameObject* g)
 	}
 }
 
+void Scene::cleanDestroyedObjects()
+{
+	for (int i = toDestroy.size() - 1; i >= 0; i--)
+	{
+		destroyGameObjectNow(toDestroy[i]);
+	}
+}
+
 void Scene::update(sf::RenderWindow* window)
 {
 	if (Debug::drawColliders)
@@ -63,11 +80,9 @@ void Scene::update(sf::RenderWindow* window)
 	collisionManager.update();
 	drawManager.DrawDebug(window);
 	drawManager.drawSpriteRenderers(window);
-	int i = 0;
-	for (GameObject* g : gameObjects)
+	for (int i = 0; i < gameObjects.size(); i++)
 	{
-		g->update();
-		i++;
+		gameObjects[i]->update();
 	}
 
 }
